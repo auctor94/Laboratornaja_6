@@ -13,6 +13,8 @@
     <body>
 <div class="center-block">
         <form name="myForm" id='testForm' method="post" action='javascript: show();' ; target = "_blanck">
+            <div class="main">
+            <div class="fields">
              <label class="col-2 col-form-label">ID:</label>   <input class = "input-style" type = "text" name = "id" autofocus id = "id_"  tabindex="1"  /><br>
              <label class="col-2 col-form-label">ФИО:</label>   <input class = "input-style" type = "text" name = "FIO" autofocus id = "FIO_"  tabindex="2"  /><br>
              <label class="col-2 col-form-label">Номер телефона:</label>   <input class = "input-style" type = "text" name = "phone" autofocus id = "phone_"  tabindex="3"  />
@@ -21,7 +23,11 @@
                       $("#phone_").mask("+375(99) 999-99-99");
                     });
                     </script><br>
-            </form>
+                     <label class="col-2 col-form-label">Адрес:</label>   <input class = "input-style" type = "text" name = "adress" autofocus id = "adress_"  tabindex="4"  /><br>
+                     <label class="col-2 col-form-label">Задолженность по оплате:</label> <input class = "input-style" type = "checkbox" name = "debt" autofocus id = "debt_"  tabindex="5"  />
+                </div>
+            </div>
+                    </form>
 </div>
 
     </body>
