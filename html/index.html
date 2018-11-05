@@ -27,11 +27,11 @@
                      <label class="col-2 col-form-label">Адрес:</label>   <input class = "input-style" type = "text" name = "adress" autofocus id = "adress_"  tabindex="4"  /><br>
                      <label class="col-2 col-form-label">Задолженность по оплате:</label> <input class = "input-style" type = "checkbox" name = "debt" autofocus id = "debt_"  tabindex="5"  />
                 </div>
-                <button class="color-button2" onclick="AddItem()" type="button">Добавление доп. свойства</button> 
+                <button class="color-button2" onclick="AddItem()" type="button">Добавление доп. свойства</button> &nbsp; &nbsp; &nbsp; 
                 <button class="color-button2" onclick="addPhoneInDB()" type="button">Добавление в БД</button>&nbsp; &nbsp; &nbsp; 
                 <button class="color-button2" onclick="cleanForm()" type="button">Очистка формы</button><br><br>
-                <button class="color-button2" onclick="show()" type="button">Показать все записи в таблице</button> 
-
+                <button class="color-button2" onclick="show(this)" type="button">Показать все записи в таблице</button> 
+                <button class="color-button2" onclick="remove()" type="button">Удаление из БД</button> 
             </div>
                     </form>  
                 <div id = "table" style="display:none; width: 50%; margin: auto">

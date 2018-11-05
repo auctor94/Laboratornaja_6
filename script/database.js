@@ -1,5 +1,6 @@
 var data = new Set();
 lastId = 0;
+first = true;//при загрузке в первый раз, нужно будет хаполнить все options
 var db = openDatabase('my_db','1.0','Phone numbers',2*1024*1024,
  function(){ 
      console.log('БД открыта!')
@@ -20,25 +21,27 @@ if(!db)
                             }
                         );
         });
-        return data;
     }
 
     function saveResults(tx, result){
-        if(result.rows.length === 0 || result.rows == undefined){
-            alert('No record');
+        if(result.rows == undefined){
             return;
         }
-        for(var i = 0; i < result.rows.length; i++){
+        window.data.clear();
+        for(var i = 0; i < result.rows.length; i ++){
             let phone = new Phone(result.rows.item(i)['id'], result.rows.item(i)['name'], result.rows.item(i)['number'],
                                 result.rows.item(i)['adress'], result.rows.item(i)['debt'],result.rows.item(i)['property']);
-            data.add(phone);
+            window.data.add(phone);
         }
-        alert("finally");
+        if(first){
+            options();
+            first = false;
+        }
     }
 
 
 
-    function lastId() {
+    function getlastId() {
         db.transaction(function(tx){
             tx.executeSql("SELECT id FROM Phone", [],
                             countLastId,
@@ -65,7 +68,7 @@ function countLastId(tx, result){
         });
     }
     
-    function deleteTool(phoneId){
+    function deletePhone(phoneId){
         db.transaction(function(tx){
             tx.executeSql("DELETE FROM Phone WHERE id = ?;",
                             [phoneId], null, null);

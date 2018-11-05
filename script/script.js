@@ -1,3 +1,17 @@
+readData();
+
+function options(){
+	var select = document.getElementsByTagName("select")[0];
+	window.data.forEach(phone => {
+		let opt = document.createElement("option");
+		opt.value = phone.getId();
+		let optText = document.createTextNode(phone.getId());
+		opt.appendChild(optText);
+		select.appendChild(opt);
+	});
+};
+
+
 function addOption(id) {
     var select = document.getElementsByTagName("select")[0];
     let opt = document.createElement("option");
@@ -34,29 +48,38 @@ function addPhoneInDB() {
         debt = "Есть";
     else debt = "Отсутствует";
     console.log(name, phone, adress, property, debt);
-    if (document.getElementById('thirdadd') !== null) {
+    var element=document.getElementById('thirsed');
+    if (element) {
         console.log("Блок доп свойства открыт. Проверяем значение внутри inputa");
         if (document.getElementById("thirsed").value == "") {
             console.log("Значение пустой. Заполняем свойство по умолчанию.");
-            var addedPhone = new Phone(name, phone, adress, debt, property);
+            let addedPhone = new Phone(null,name, phone, adress, debt, property);
+            console.log(addedPhone.toString());
             addPhone(addedPhone);
-            lastId();
+            getlastId();
         }
         else {
             console.log("Значение внутри input есть! Считываем его и заполняем свойство!");
             let fullProperty = document.getElementById("thirsed").value;
-            var addedPhone = new Phone(name, phone, adress, debt, fullProperty);
+            let addedPhone = new Phone(null,name, phone, adress, debt, fullProperty);console.log(addedPhone.toString());
             addPhone(addedPhone);
-            lastId();
+            getlastId();
         }
 
     }
     else {
         console.log("Блок доп свойства закрыт. Заполняем свойство по умолчанию.");
-        var addedPhone = new Phone(name, phone, adress, debt, property);
+        let addedPhone = new Phone(null,name, phone, adress, debt, property);console.log(addedPhone.toString());
         addPhone(addedPhone);
-        lastId();
+        getlastId();
     }
+}
+
+function remove(){
+    var years=prompt('Введите id той строки, которую хотите удалить из БД',1);
+	
+	deletePhone(years);
+
 }
 
 function cleanForm() {
@@ -64,6 +87,10 @@ function cleanForm() {
     myForm.phone.value = '';
     myForm.adress.value = '';
     myForm.debt.checked = false;
+    let element=document.getElementById('thirsed');
+    if (element) {
+        element.value = '';
+    }
 }
 
 function show() {
