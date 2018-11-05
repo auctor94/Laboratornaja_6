@@ -15,7 +15,7 @@ if(!db)
             tx.executeSql("SELECT * FROM Phone;", [],
                             saveResults,
                             function(tx, error){
-                                tx.executeSql("CREATE TABLE Phone (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name TEXT, number TEXT, adress REAL, debt REAL);", [], null, null);
+                                tx.executeSql("CREATE TABLE Phone (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name TEXT, number TEXT, adress TEXT, debt TEXT, property TEXT );", [], null, null);
                             }
                         );
         });
@@ -29,8 +29,8 @@ if(!db)
         }
         for(var i = 0; i < result.rows.length; i++){
             let phone = new Phone(result.rows.item(i)['id'], result.rows.item(i)['name'], result.rows.item(i)['number'],
-                                result.rows.item(i)['adress'], result.rows.item(i)['debt']);
-            data.add(tool);
+                                result.rows.item(i)['adress'], result.rows.item(i)['debt'],result.rows.item(i)['property']);
+            data.add(phone);
         }
         alert("finally");
     }
@@ -45,7 +45,7 @@ if(!db)
                                 lastId = result.rows.item(result.rows.length - 1)['id'];
                             },
                             function(tx, error){
-                                tx.executeSql("CREATE TABLE Phone (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name TEXT, number TEXT, adress REAL, debt REAL);", [], null, null);
+                                tx.executeSql("CREATE TABLE Phone (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name TEXT, number TEXT, adress TEXT, debt TEXT, property TEXT);", [], null, null);
                             }
                         );
         });
@@ -54,8 +54,8 @@ if(!db)
 
    function addPhone(newPhone){
         db.transaction(function(tx){
-            tx.executeSql("INSERT INTO Phone(name, number, adress, debt) VALUES(?, ?, ?, ?);",
-                            [newPhone.getName(), newPhone.getPurpose(), newPhone.getWeight(), newPhone.getPrice()], 
+            tx.executeSql("INSERT INTO Phone(name, number, adress, debt, property) VALUES(?, ?, ?, ?, ?);",
+                            [newPhone.getName(), newPhone.getPurpose(), newPhone.getWeight(), newPhone.getPrice(), newPhone.newProperty], 
                             function(tx, result){
                                 alert("Yes!");
                             }, 

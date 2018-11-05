@@ -7,4 +7,4 @@ this.adress = adress;
 this.debt = debt;
 }
 //свойство прототипа, которое будет доступно всем экземплярам
-Phone.prototype.newProperty = "Helllllloooooooo";
+Phone.prototype.newProperty = "False";

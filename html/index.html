@@ -16,7 +16,7 @@
 <div class="center-block">
         <form name="myForm" id='testForm' method="post" action='javascript: show();' ; target = "_blanck">
             <div class="main">
-            <div class="fields">
+            <div class="fields" id="fields">
              <select id="mySelectId" name="mySelect"></select><br>
              <label class="col-2 col-form-label">ФИО:</label>   <input class = "input-style" type = "text" name = "FIO" autofocus id = "FIO_"  tabindex="2"  /><br>
              <label class="col-2 col-form-label">Номер телефона:</label>   <input class = "input-style" type = "text" name = "phone" autofocus id = "phone_"  tabindex="3"  />
@@ -28,12 +28,26 @@
                      <label class="col-2 col-form-label">Адрес:</label>   <input class = "input-style" type = "text" name = "adress" autofocus id = "adress_"  tabindex="4"  /><br>
                      <label class="col-2 col-form-label">Задолженность по оплате:</label> <input class = "input-style" type = "checkbox" name = "debt" autofocus id = "debt_"  tabindex="5"  />
                 </div>
+                <button class="color-button2" onclick="AddItem()" type="button">Добавление доп. свойства</button> 
+                <button class="color-button2" onclick="addPhoneInDB()" type="button">Добавление в БД</button>&nbsp; &nbsp; &nbsp; 
+                <button class="color-button2" onclick="cleanForm()" type="button">Очистка формы</button><br><br>
+                <button class="color-button2" onclick="show()" type="button">Показать все записи в таблице</button> 
 
-                <button class="color-button2" onclick="addOption('mySelectId')" type="button">Добавление в ID</button> 
             </div>
                     </form>  
+<table id="dynamic" width="950" border="1" cellspacing="0" cellpadding="5">
 
+    <tr>
+            <th scope="col">ID</th>
+            <th scope="col">ФИО</th>
+            <th scope="col">Номер телефона</th>
+            <th scope="col">Адрес</th>
+            <th scope="col">Задолженность по оплате</th>
+            <th scope="col">Дополнительное свойство</th>
+    </tr>
+</table>
 </div>
+
 
 
     </body>
