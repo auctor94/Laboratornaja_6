@@ -1,37 +1,62 @@
-
+function addOption(id) {
+    var select = document.getElementsByTagName("select")[0];
+    let opt = document.createElement("option");
+    opt.value = id;
+    let optText = document.createTextNode(id);
+    opt.appendChild(optText);
+    select.appendChild(opt);
+}
 
 var check = true;
-
-    function AddItem() {
-        // Создаем элемент ДИВ
-        if (check==true) {
+function AddItem() {
+    // Создаем элемент ДИВ
+    if (check == true) {
         var div = document.createElement("div");
         // Добавляем HTML-контент с пом. свойства innerHTML
         div.innerHTML = "<input class=\"input-style\" type=\"text\" name=\"thirdadd\" id=\"thirsed\">";
-         
+
         // Добавляем новый узел в конец списка полей
         document.getElementById("fields").appendChild(div);
-     check = false;    
+        check = false;
     }
-       }
-
+}
 
 
 function addPhoneInDB() {
-//let id = document.getElementById("mySelectId").options.selectedIndex;
-let name = document.getElementById("FIO_").value;
-let phone = document.getElementById("phone_").value;
-let adress = document.getElementById("adress_").value;
-let checkboxes = document.getElementById('debt_');
-let debt;
-if (checkboxes.checked)
-debt = "Есть";
-else debt = "Отсутствует";
-if (document.getElementById('thirdadd') != null ) {
-alert("aaaaaaaaaaaaaaaaaaaa");
-var addedPhone = new Phone(id,name,phone,adress,debt);
-addPhone(addedPhone);}
+    let name = document.getElementById("FIO_").value;
+    let phone = document.getElementById("phone_").value;
+    let adress = document.getElementById("adress_").value;
+    let checkboxes = document.getElementById('debt_');
+    let debt;
+    let property = "False";
 
+    if (checkboxes.checked)
+        debt = "Есть";
+    else debt = "Отсутствует";
+    console.log(name, phone, adress, property, debt);
+    if (document.getElementById('thirdadd') !== null) {
+        console.log("Блок доп свойства открыт. Проверяем значение внутри inputa");
+        if (document.getElementById("thirsed").value == "") {
+            console.log("Значение пустой. Заполняем свойство по умолчанию.");
+            var addedPhone = new Phone(name, phone, adress, debt, property);
+            addPhone(addedPhone);
+            lastId();
+        }
+        else {
+            console.log("Значение внутри input есть! Считываем его и заполняем свойство!");
+            let fullProperty = document.getElementById("thirsed").value;
+            var addedPhone = new Phone(name, phone, adress, debt, fullProperty);
+            addPhone(addedPhone);
+            lastId();
+        }
+
+    }
+    else {
+        console.log("Блок доп свойства закрыт. Заполняем свойство по умолчанию.");
+        var addedPhone = new Phone(name, phone, adress, debt, property);
+        addPhone(addedPhone);
+        lastId();
+    }
 }
 
 function cleanForm() {
@@ -45,7 +70,7 @@ function show() {
     /*new DynamicTable( window, 
         document.getElementById("dynamic"),
         {1:"val1", 2:"val2", 3:"val3", 4:"val4"} );*/
-        readData();
+    readData();
 
 }
 

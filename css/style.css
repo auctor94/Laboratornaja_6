@@ -58,3 +58,12 @@ label {
      border: 2px solid #34011e;
      border-radius: 15px 15px 15px 15px;
 }
+
+td{
+	border: 1px dashed SandyBrown;
+}
+
+table{
+	width: 50%;
+	margin: auto;
+}

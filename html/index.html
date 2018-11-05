@@ -5,12 +5,11 @@
 		<link href="../css/style.css" rel="stylesheet" type="text/css">
 		<meta http-equiv = "Content-type" content = "text/html; charset = utf-8">
 		<meta http-equiv="X-UA-Compatible" content ="IE=Edge">
-		<link rel = "stylesheet" href="http://fonts.googleapis.com/css? family=Oswald:400,300" type="text/css">
-        <script src="../script/script.js"></script> 
         <script src="../script/jquery-3.3.1.min.js"></script>
         <script src="../script/jquery.maskedinput.js"></script>
     <script src="../script/database.js"></script>
     <script src="../script/Phone.js"></script>
+    <script src="../script/script.js"></script> 
     </head>
     <body>
 <div class="center-block">
@@ -18,16 +17,6 @@
             <div class="main">
             <div class="fields" id="fields">
              <select id="mySelectId" name="mySelect"></select><br>
-             <script>
-                function addOption() {
-                    var objSel = document.getElementById('mySelectId');
-                let oOption = document.createElement("option");
-                for (var i=1; i<= lastID.int; i++){
-                oOption.appendChild(document.createTextNode(i.toString()));
-                oOption.selected = true;
-                objSel.appendChild(oOption);
-                }
-                }</script>
              <label class="col-2 col-form-label">ФИО:</label>   <input class = "input-style" type = "text" name = "FIO" autofocus id = "FIO_"  tabindex="2"  /><br>
              <label class="col-2 col-form-label">Номер телефона:</label>   <input class = "input-style" type = "text" name = "phone" autofocus id = "phone_"  tabindex="3"  />
              <script>
@@ -45,16 +34,18 @@
 
             </div>
                     </form>  
-<table id="dynamic" width="950" border="1" cellspacing="0" cellpadding="5">
+                <div id = "table" style="display:none; width: 50%; margin: auto">
+<table id="dynamic" cellspacing="0" cellpadding="5">
     <tr>
-            <th scope="col">ID</th>
-            <th scope="col">ФИО</th>
-            <th scope="col">Номер телефона</th>
-            <th scope="col">Адрес</th>
-            <th scope="col">Задолженность по оплате</th>
-            <th scope="col">Дополнительное свойство</th>
+            <th>ID</th>
+            <th>ФИО</th>
+            <th>Номер телефона</th>
+            <th>Адрес</th>
+            <th>Задолженность по оплате</th>
+            <th>Дополнительное свойство</th>
     </tr>
 </table>
+</div>
 </div>
 
 
