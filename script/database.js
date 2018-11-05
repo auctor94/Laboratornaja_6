@@ -51,3 +51,24 @@ if(!db)
         });
         return lastId;
     }
+
+   function addPhone(newPhone){
+        db.transaction(function(tx){
+            tx.executeSql("INSERT INTO Phone(name, number, adress, debt) VALUES(?, ?, ?, ?);",
+                            [newPhone.getName(), newPhone.getPurpose(), newPhone.getWeight(), newPhone.getPrice()], 
+                            function(tx, result){
+                                alert("Yes!");
+                            }, 
+                            function(error){
+                                alert(error.message);
+                            });
+        });
+    }
+    
+    function deleteTool(phoneId){
+        db.transaction(function(tx){
+            tx.executeSql("DELETE FROM Phone WHERE id = ?;",
+                            [phoneId], null, null);
+        });
+    }
+    
