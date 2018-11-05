@@ -55,7 +55,7 @@ if(!db)
    function addPhone(newPhone){
         db.transaction(function(tx){
             tx.executeSql("INSERT INTO Phone(name, number, adress, debt, property) VALUES(?, ?, ?, ?, ?);",
-                            [newPhone.getName(), newPhone.getPurpose(), newPhone.getWeight(), newPhone.getPrice(), newPhone.newProperty], 
+                            [newPhone.getName(), newPhone.getNumber(), newPhone.getAdress(), newPhone.getDebt(), newPhone.getNewProperty()], 
                             function(tx, result){
                                 alert("Yes!");
                             }, 

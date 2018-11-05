@@ -18,6 +18,16 @@
             <div class="main">
             <div class="fields" id="fields">
              <select id="mySelectId" name="mySelect"></select><br>
+             <script>
+                function addOption() {
+                    var objSel = document.getElementById('mySelectId');
+                let oOption = document.createElement("option");
+                for (var i=1; i<= lastID.int; i++){
+                oOption.appendChild(document.createTextNode(i.toString()));
+                oOption.selected = true;
+                objSel.appendChild(oOption);
+                }
+                }</script>
              <label class="col-2 col-form-label">ФИО:</label>   <input class = "input-style" type = "text" name = "FIO" autofocus id = "FIO_"  tabindex="2"  /><br>
              <label class="col-2 col-form-label">Номер телефона:</label>   <input class = "input-style" type = "text" name = "phone" autofocus id = "phone_"  tabindex="3"  />
              <script>
@@ -36,7 +46,6 @@
             </div>
                     </form>  
 <table id="dynamic" width="950" border="1" cellspacing="0" cellpadding="5">
-
     <tr>
             <th scope="col">ID</th>
             <th scope="col">ФИО</th>
