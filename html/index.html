@@ -1,53 +1,76 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Телефонная книга</title>
-		<link href="../css/style.css" rel="stylesheet" type="text/css">
-		<meta http-equiv = "Content-type" content = "text/html; charset = utf-8">
-		<meta http-equiv="X-UA-Compatible" content ="IE=Edge">
-        <script src="../script/jquery-3.3.1.min.js"></script>
-        <script src="../script/jquery.maskedinput.js"></script>
+
+<head>
+    <title>Телефонная книга</title>
+    <link href="../css/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Content-type" content="text/html; charset = utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <script src="../script/jquery-3.3.1.min.js"></script>
+    <script src="../script/jquery.maskedinput.js"></script>
     <script src="../script/database.js"></script>
     <script src="../script/Phone.js"></script>
-    <script src="../script/script.js"></script> 
-    </head>
-    <body>
-<div class="center-block">
-        <form name="myForm" id='testForm' method="post" action='javascript: show();' ; target = "_blanck">
-            <div class="main">
-            <div class="fields" id="fields">
-             <select id="mySelectId" name="mySelect"></select><br>
-             <label class="col-2 col-form-label">ФИО:</label>   <input class = "input-style" type = "text" name = "FIO" autofocus id = "FIO_"  tabindex="2"  /><br>
-             <label class="col-2 col-form-label">Номер телефона:</label>   <input class = "input-style" type = "text" name = "phone" autofocus id = "phone_"  tabindex="3"  />
-             <script>
-                    $(function(){
-                      $("#phone_").mask("+375(99) 999-99-99");
-                    });
-                    </script><br>
-                     <label class="col-2 col-form-label">Адрес:</label>   <input class = "input-style" type = "text" name = "adress" autofocus id = "adress_"  tabindex="4"  /><br>
-                     <label class="col-2 col-form-label">Задолженность по оплате:</label> <input class = "input-style" type = "checkbox" name = "debt" autofocus id = "debt_"  tabindex="5"  />
+    <script src="../script/script.js"></script>
+</head>
+
+<body>
+    <header>
+        <h2 style=" text-shadow: 5px 14px 15px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.25);">Телефонная книга</h2>
+    </header>
+    <div class="my-flex-container">
+
+        <aside>
+            <div id="haveDebt"></div>
+        </aside>
+        <div class="center-block">
+            <form name="myForm" id='testForm' method="post" action='javascript: show();' ; target="_blanck">
+                <div class="main">
+                    <div class="fields" id="fields">
+                        <select id="mySelectId" name="mySelect"></select><br>
+                        <label class="col-2 col-form-label">ФИО:</label> <input class="input-style" type="text" name="FIO"
+                            autofocus id="FIO_" tabindex="2" /><br>
+                        <label class="col-2 col-form-label">Номер телефона:</label> <input class="input-style" type="text"
+                            name="phone" autofocus id="phone_" tabindex="3" />
+                        <script>
+                            $(function () {
+                                $("#phone_").mask("+375(99) 999-99-99");
+                            });
+                        </script><br>
+                        <label class="col-2 col-form-label">Адрес:</label> <input class="input-style" type="text" name="adress"
+                            autofocus id="adress_" tabindex="4" /><br>
+                        <label class="col-2 col-form-label">Задолженность по оплате:</label> <input class="input-style"
+                            type="checkbox" name="debt" autofocus id="debt_" tabindex="5" />
+                    </div>
+                    <br><br>
+                    <div class="flex-buttons">
+                       <div class="top"> <button class="color-button2" onclick="AddItem()" type="button">Добавление доп. свойства</button>
+                        &nbsp; &nbsp; &nbsp;
+                        <button class="color-button2" onclick="addPhoneInDB()" type="button">Добавление в БД</button>&nbsp;
+                        &nbsp; &nbsp;
+                        <button class="color-button2" onclick="cleanForm()" type="button">Очистка формы</button></div><br><br>
+                       <div class="bottom"> <button class="color-button2" onclick="show(this)" type="button">Показать все записи в таблице</button>
+                        &nbsp; &nbsp; &nbsp;  <button class="color-button2" onclick="remove()" type="button">Удаление из БД</button>
+                        &nbsp; &nbsp; &nbsp; <button class="color-button2" onclick="Debeter()" type="button">Вывод ФИО с задолженностью</button></div>
+                    </div>
                 </div>
-                <button class="color-button2" onclick="AddItem()" type="button">Добавление доп. свойства</button> &nbsp; &nbsp; &nbsp; 
-                <button class="color-button2" onclick="addPhoneInDB()" type="button">Добавление в БД</button>&nbsp; &nbsp; &nbsp; 
-                <button class="color-button2" onclick="cleanForm()" type="button">Очистка формы</button><br><br>
-                <button class="color-button2" onclick="show(this)" type="button">Показать все записи в таблице</button> 
-                <button class="color-button2" onclick="remove()" type="button">Удаление из БД</button> 
+            </form>
+
+            <div id="table" style="display:none; width: 50%; margin: auto">
+                <table id="dynamic" cellspacing="0" cellpadding="5">
+                    <tr>
+                        <th>ID</th>
+                        <th>ФИО</th>
+                        <th>Номер телефона</th>
+                        <th>Адрес</th>
+                        <th>Задолженность по оплате</th>
+                        <th>Дополнительное свойство</th>
+                    </tr>
+                </table>
             </div>
-                    </form>  
-                <div id = "table" style="display:none; width: 50%; margin: auto">
-<table id="dynamic" cellspacing="0" cellpadding="5">
-    <tr>
-            <th>ID</th>
-            <th>ФИО</th>
-            <th>Номер телефона</th>
-            <th>Адрес</th>
-            <th>Задолженность по оплате</th>
-            <th>Дополнительное свойство</th>
-    </tr>
-</table>
-</div>
-</div>
+        </div>
 
-
-
-    </body>
+    </div>
+    <footer>
+        <br>Timofei Andranovich, 2018 &copy;
+    </footer>
+</body>

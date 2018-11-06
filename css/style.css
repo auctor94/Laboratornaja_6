@@ -3,23 +3,28 @@ body{
     height: 100%;
     width: 100%;
     background-image: url(../rsc/background.jpg);
+    flex-direction: row;
 }
 
 .center-block {
 margin: 0 auto;
-width: 950px;
-background-color: rgb(131, 192, 216);
-opacity: 0.7;
+background-color: #74b49b;
+opacity: 0.85;
 border-radius: 10px 10px 10px 10px;
     border-left: 2px solid #34011e;
     border-top: 2px solid #34011e;
     border-right: 2px solid #34011e;
     border-bottom: 2px solid #34011e;
     position: relative;
-    height: 500px;
+    overflow: hidden;
+    min-height: 100%;
+    /*height: auto !important;*/
+    min-height: 530px;
+    flex-basis: 80%;
+
 }
 
-.input-style{
+.input-style {
     opacity: 0.7;
     border-radius: 5px;
     padding: 5px; 
@@ -28,7 +33,9 @@ border-radius: 10px 10px 10px 10px;
     margin-left: 50px;
     font-size: 15px;
 }
-
+#debt_ {
+    height: 30px;
+}
 .fields {    /* для выравнивания полей формы */
 	clear:both; 
     text-align:right; 
@@ -54,16 +61,72 @@ label {
      width: 150px;
      height: 40px; 
         text-align: center;
-     background: rgb(128, 166, 182);
+     background: #0c907d;
      border: 2px solid #34011e;
      border-radius: 15px 15px 15px 15px;
 }
 
 td{
-	border: 1px dashed SandyBrown;
+    border: 1px solid rgb(52, 67, 73);
+    background-color: antiquewhite;
+
 }
 
 table{
 	width: 50%;
 	margin: auto;
 }
+
+.my-flex-container{
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: flex;
+    flex-wrap: nowrap; /*Свойство управляет тем, как flex-контейнер будет выкладывать flex-элементы — в одну строку или в несколько,*/
+    flex-direction: row;/*Свойство определяет, каким образом flex-элементы укладываются во flex-контейнере, задавая направление главной оси flex-контейнера. */
+    flex-grow: 0; /*Свойство определяет коэффициент увеличения ширины flex-элемента относительно других flex-элементов. */
+    flex-shrink: 1;	/*Свойство указывает коэффициент уменьшения ширины flex-элемента относительно других flex-элементов.*/  
+}
+
+aside {
+    flex-basis: 20%;
+    margin: 0 auto;
+background-color:#a7d7c5;
+opacity: 0.7;
+border-radius: 10px 10px 10px 10px;
+    border-left: 2px solid #34011e;
+    border-top: 2px solid #34011e;
+    border-right: 2px solid #34011e;
+    border-bottom: 2px solid #34011e;
+}
+
+header {
+    background-color: #f9f8eb;
+	background-size: 35%;
+	height: 70px;
+	border: 1.5px solid #34011e;
+    text-align: center;
+    margin: auto;
+    color: black;
+}
+
+footer {
+    background-color: #5c8d89;
+    border: 1.5px solid #34011e;
+	height: 60px; 
+	position:relative;
+	text-align: center; 
+	font-family: abeezee; 
+    margin: auto;
+    overflow: hidden;
+}
+
+.flex-buttons {
+    flex-direction: column;
+}
+
+.top, .bottom {
+    justify-content: space-between;
+    align-items: center;
+    align-content: flex-start;
+}
+

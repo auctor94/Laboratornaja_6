@@ -93,14 +93,88 @@ function cleanForm() {
     }
 }
 
-function show() {
-    /*new DynamicTable( window, 
-        document.getElementById("dynamic"),
-        {1:"val1", 2:"val2", 3:"val3", 4:"val4"} );*/
-    readData();
-
+function show(button){
+	var tableDiv = document.getElementById("table");
+	var table = document.getElementsByTagName("tbody")[0];
+	if(tableDiv.style.display === "none"){
+		tableDiv.style.display = "initial";
+		button.innerHTML = "Скрыть таблицу";
+		readData();		
+        window.data.forEach(phone => table.appendChild(createRow(phone)));
+        console.log("по сути мы должны читать readdata");
+	} else{
+		let rows = table.getElementsByTagName("tr");
+		while(rows.length !== 1)
+			table.removeChild(rows[1]);
+		tableDiv.style.display = "none";
+		button.innerHTML = "Показать все записи в таблице";		
+	}
 }
 
+function createRow(phone){
+	let row = document.createElement("tr");
+	
+	let cell = document.createElement("td");
+	let text = document.createTextNode(phone.getId());
+	cell.appendChild(text);
+	row.appendChild(cell);
+	
+	cell = document.createElement("td");
+	text = document.createTextNode(phone.getName());
+	cell.appendChild(text);
+	row.appendChild(cell);
+	
+	cell = document.createElement("td");
+	text = document.createTextNode(phone.getNumber());
+	cell.appendChild(text);
+	row.appendChild(cell);
+	
+	cell = document.createElement("td");
+	text = document.createTextNode(phone.getAdress());
+	cell.appendChild(text);
+	row.appendChild(cell);
+	
+	cell = document.createElement("td");
+	text = document.createTextNode(phone.getDebt());
+	cell.appendChild(text);
+	row.appendChild(cell);
+    
+    cell = document.createElement("td");
+    text = document.createTextNode(phone.getNewProperty());
+    let a = phone.getNewProperty();
+    if (a == "False")
+    {
+        console.log("a == False");
+        let temporary = "Отсутствует";
+        text = document.createTextNode(temporary);
+	cell.appendChild(text);
+	row.appendChild(cell);
+    }
+    else {
+        cell.appendChild(text);
+	row.appendChild(cell);
+    }
+	
+	return row;
+}
+
+function Debeter(){
+	var div = document.getElementById("haveDebt");
+	if(div.innerHTML !== ""){
+		div.innerHTML = "";
+		return;
+	}
+	if(window.data.size === 0){
+		div.innerHTML = "В базе данных еще нет записей";
+	}else{
+		for(let phone of window.data){
+			if(phone.getDebt() != "Отсутствует"){
+                div.innerHTML += phone.toString() + "<br>";
+			}
+		}
+		
+	}
+}
 /*var check1 = true;
 
     function AddItem1() {
